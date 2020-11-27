@@ -5,5 +5,5 @@ Script feito com o intuito de ganhar seguidores por meio de receber follows mút
 - Twitter (somente tema padrão);
 
 ## To-Do:
-- [] Adicionar suporte à mais redes sociais;
-- [] Documentar melhor o código;
+- [ ] Adicionar suporte à mais redes sociais;
+- [ ] Documentar melhor o código;
