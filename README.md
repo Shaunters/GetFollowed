@@ -29,4 +29,5 @@ e se ele não achar, ele irá scrollar para baixo automaticamente. (Muito fácil
 
 #### Footnotes
 <b id="f1">1.</b> Outros temas geram incompatibilidade no script, solução em andamento;[↩](#a1)
+
 <b id="f2">2.</b> Python3 recomendado;[↩](#a2)
