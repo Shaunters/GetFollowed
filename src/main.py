@@ -111,7 +111,7 @@ class Main():
     
     """Main method of the class, called from outside."""
     def run(self) -> None:
-        
+
         os.system("cls" if os.name == "nt" else "clear")
         self.__chooseLanguage()
         print(ART)
@@ -130,7 +130,7 @@ class Main():
     def __mainLoop(self) -> None:
         while True:
             self.__print("Running the loop;\n")
-            self.__print("Waiting 0.2 seconds;\n")
+            self.__print("Waiting some time;\n")
             sleep(self.waitTime)
 
             self.__print("Verifying if ESC is pressed;\n")
