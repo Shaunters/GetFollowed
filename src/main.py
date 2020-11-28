@@ -1,3 +1,8 @@
+# OPEN SOURCE IS LIFE
+#
+# Made by Thiago Souza, 2020
+# Github: https://github.com/Shaunters
+#
 import pyautogui, colorama
 import os, sys, keyboard
 from time import sleep
