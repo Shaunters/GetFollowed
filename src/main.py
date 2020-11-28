@@ -48,6 +48,9 @@ class Main():
         # Language Sheets containing the languages texts;
         self.englishLS = {
                               "ID": "EN",
+                              "twitter1": "Default",
+                              "twitter2": "Dim",
+                              "twitter3": "Lights out",
                               "choiceSocial": "Choose the social media to be used: (USE THE NUMBERS)",
                               "choiceError": "\nInvalid choice!\n",
                               "startingWarning": "WARNING -> ",
@@ -57,6 +60,9 @@ class Main():
                               }
         self.portuguesLS = {
                               "ID": "BR",
+                              "twitter1": "Padrão",
+                              "twitter2": "Um pouco escuro",
+                              "twitter3": "Superescuro",
                               "choiceSocial": "Escolha a rede social à ser usada: (USE OS NÚMEROS)",
                               "choiceError": "\nEscolha inválida!\n",
                               "startingWarning": "AVISO -> ",
@@ -91,15 +97,22 @@ class Main():
     """Returns the input from the user containing the path to the social media button choosed."""
     def __getPathInput(self) -> str:
         print(LBLUE + self.actualLS["choiceSocial"])
-        print("1 - Twitter;\n2 - Instagram;\n")
+        print("1 - Twitter ({});\n2 - Twitter ({});\n3 - Twitter ({});\n4 - Instagram;\n".format(
+            self.actualLS["twitter1"], self.actualLS["twitter2"], self.actualLS["twitter3"]))
         
         inp = str(input(">> "))
         
         # Twitter (Default Theme);
         if inp == "1":
             return "{}/imgs/{}_twitter.png".format(sys.argv[0].split("main.py")[0], self.actualLS["ID"])
-        # Instagram;
+        # Twitter dim;
         elif inp == "2":
+            return "{}/imgs/{}_twitter2.png".format(sys.argv[0].split("main.py")[0], self.actualLS["ID"])
+        # Twitter lights-out;
+        elif inp == "3":
+            return "{}/imgs/{}_twitter3.png".format(sys.argv[0].split("main.py")[0], self.actualLS["ID"])
+        # Instagram;
+        elif inp == "4":
             return "{}/imgs/{}_instagram.png".format(sys.argv[0].split("main.py")[0], self.actualLS["ID"])
         # Invalid choice;
         else:

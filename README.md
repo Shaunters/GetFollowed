@@ -19,7 +19,7 @@ When the script is started, it will ask you what social media you're going to us
 
 ### To-Do:
 - [ ] Add support to more social medias;
-- [ ] Add support to Twitter other themes;
+- [X] Add support to Twitter other themes;
 - [ ] Add support to more languages;
 - [X] Comment the code better;
 - [X] Add english language support on the script;
@@ -50,8 +50,8 @@ e se ele não achar, ele irá scrollar para baixo automaticamente. (Muito fácil
 
 ### To-Do:
 - [ ] Adicionar suporte à mais redes sociais;
-- [ ] Adicionar suporte à outros temas do Twitter;
-- [ ] Adicionar suport à mais linguagens;
+- [X] Adicionar suporte à outros temas do Twitter;
+- [ ] Adicionar suporte à mais linguagens;
 - [X] Documentar melhor o código;
 - [X] Adicionar suporte à inglês no script;
 - [X] Adicionar uma seção de inglês no README.md;
