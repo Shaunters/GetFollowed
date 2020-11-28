@@ -2,11 +2,11 @@
 Script feito com o intuito de ganhar seguidores por meio de receber follows mútuos.
 
 ## Redes Sociais suportadas (até então):
-- 🐦 Twitter (somente tema padrão);[^1]
+- 🐦 Twitter (somente tema padrão);<sup id="a1">[1](#f1)</sup>
 - 📷 Instagram
 
 ## Como usar?
-Antes de começar, você deve ter o [Python3](https://www.python.org/downloads/) instalado.[^2]
+Antes de começar, você deve ter o [Python3](https://www.python.org/downloads/) instalado.<sup id="a2">[2](#f2)</sup>
 Após a instalação, clone ou baixe esse repositório, e na pasta principal, use `cd src`
 e depois `pip install -r requirements.txt`, e você está pronto para continuar.
 
@@ -27,5 +27,6 @@ e se ele não achar, ele irá scrollar para baixo automaticamente. (Muito fácil
 - [X] Documentar melhor o código;
 - [ ] Adicionar suporte à inglês;
 
-[^1]: Outros temas geram incompatibilidade no script, solução em andamento;
-[^2]: Python3 recomendado;
+#### Footnotes
+<b id="f1">1.</b> Outros temas geram incompatibilidade no script, solução em andamento;[↩](#a1)
+<b id="f2">2.</b> Python3 recomendado;[↩](#a2)
