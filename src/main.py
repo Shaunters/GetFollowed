@@ -45,14 +45,50 @@ class Main():
         # Tamanho do scroll quando o botão não for localizado;
         self.scrollAmount = -150
 
-    """Função print própria da classe, usada para DEBUGGING"""
+        # Dicionários contendo os textos de várias linguagens;
+        self.englishLS = dict({
+                              "choiceSocial": "Choose the social media to be used: (USE THE NUMBERS)",
+                              "choiceError": "\nInvalid choice!\n",
+                              "startingWarning": "WARNING -> ",
+                              "startingMessage": "The script will start in 5 seconds, open the social media page!\n(Hold ESC to exit!)\n",
+                              "startingInit": "Initialized with success!",
+                              "closing":"Closing..."
+                              })
+        self.portuguesLS = dict({
+                              "choiceSocial": "Escolha a rede social à ser usada: (USE OS NÚMEROS)",
+                              "choiceError": "\nEscolha inválida!\n",
+                              "startingWarning": "AVISO -> ",
+                              "startingMessage": "O script irá iniciar em 5 segundos,!\n(Segure ESC para sair!)\n",
+                              "startingInit": "Iniciado com sucesso!",
+                              "closing":"Fechando..."
+                              })
+        # Dicionário que irá conter a linguagem usada atualmente;
+        self.actualLS = dict({})
+
+    """Função print própria da classe, usada para DEBUGGING."""
     def __print(self, texto) -> None:
         if self.DEBUG:
             print(YELLOW + texto)
 
+    """Função para escolher a linguagem e setar nos Language Sheets (LS) corretos."""
+    def __chooseLanguage(self) -> None:
+        print("\nWhat language do you want to use?\n")
+        print("1. English;\n2. Português Brasileiro;\n")
+        inp = str(input(">> "))
+
+        if inp == "1":
+            self.actualLS = self.englishLS
+            return
+        elif inp == "2":
+            self.actualLS = self.portuguesLS
+            return
+        elif inp not in ("1", "2"):
+            print("\nInvalid choice!\n")
+            return self.__chooseLanguage()
+
     """Retorna o input do usuário com a rede social escolhida."""
     def __pegarEscolha(self) -> str:
-        print(LBLUE + "Escolha a rede social para ser usada: (USE OS NÚMEROS)")
+        print(LBLUE + self.actualLS["choiceSocial"])
         print("1 - Twitter;\n2 - Instagram;\n")
         
         inp = str(input(">> "))
@@ -62,7 +98,7 @@ class Main():
         elif inp == "2":
             return "{}/imgs/instagram.png".format(sys.argv[0].split("main.py")[0])
         else:
-            print(RESET + RED + "\nEscolha Inválida!\n" + RESET)
+            print(RESET + RED + self.actualLS["choiceError"] + RESET)
             return self.__pegarEscolha()
 
     """Retorna as coordenadas do botão ou None se não for achado."""
@@ -77,13 +113,13 @@ class Main():
     def run(self) -> None:
         try:
             os.system("cls" if os.name == "nt" else "clear")
+            self.__chooseLanguage()
             print(ARTE)
             self.caminhoBotao = self.__pegarEscolha()
 
-            print("\n\n" + YELLOW + "AVISO -> " + RESET + \
-                  "O script será iniciado em 5 segundos, abra a página da rede social!\n(Segure ESC para fechar!)\n")
+            print("\n\n" + YELLOW + self.actualLS["startingWarning"] + RESET + self.actualLS["startingMessage"])
             sleep(5)
-            print("\n" + GREEN + "Iniciado com sucesso!" + RESET)
+            print("\n" + GREEN + self.actualLS["startingInit"] + RESET)
             if self.DEBUG: print(YELLOW + "(DEBUG MODE)" + RESET)
 
             self.__mainLoop()
@@ -91,8 +127,12 @@ class Main():
             quit()
 
         except Exception as e:
-            print(RED + f"ERRO: \n{e}\n\n" + RESET)
+            print(RED + f"ERROR: \n{e}\n\n" + RESET)
             quit()
+        except KeyboardInterrupt:
+            print(RED + self.actualLS["closing"])
+            print(RESET)
+            return
 
     """Loop principal, pega a localização e clica."""
     def __mainLoop(self) -> None:
@@ -124,6 +164,4 @@ if __name__ == "__main__":
     try:
         Main(debug=DEBUG).run()
     except KeyboardInterrupt:
-        print(RED + "Fechando...")
-        print(RESET)
-        quit()
+        pass

@@ -21,7 +21,7 @@ When the script is started, it will ask you what social media you're going to us
 - [ ] Add support to more social medias;
 - [ ] Add support to Twitter other themes;
 - [X] Comment the code better;
-- [ ] Add english language support on the script;
+- [X] Add english language support on the script;
 - [X] Add english section in README.md;
 
 # Português Brasileiro | :brazil:
@@ -51,5 +51,5 @@ e se ele não achar, ele irá scrollar para baixo automaticamente. (Muito fácil
 - [ ] Adicionar suporte à mais redes sociais;
 - [ ] Adicionar suporte à outros temas do Twitter;
 - [X] Documentar melhor o código;
-- [ ] Adicionar suporte à inglês no script;
+- [X] Adicionar suporte à inglês no script;
 - [X] Adicionar uma seção de inglês no README.md;
