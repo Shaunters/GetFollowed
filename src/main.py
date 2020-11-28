@@ -60,20 +60,22 @@ def mainloop(currentButton):
             pyautogui.click()
             pass
 
-# Limpando o console (ele também verifica se o SO é Windows ou Linux);
-if os.name == "nt":
-    os.system("clear")
-else:
-    os.system("cls")
+try:
+    # Limpando o console (ele também verifica se o SO é Windows ou Linux)
+    # E printando a arte ASCII;
+    os.system("cls" if os.name == "nt" else "clear")
+    print(ARTE)
 
-print(ARTE)
+    # Chamando a função de escolher o botão;
+    currentButton = chooseButton()
+    print(colorama.Fore.YELLOW + "\n\nAVISO:" + colorama.Fore.RESET + \
+        " Segure a tecla ESC ou aperte CTRL + C para fechar! \n\nIniciando em 5 SEG!")
 
-# Chamando a função de escolher o botão;
-currentButton = chooseButton()
-print(colorama.Fore.YELLOW + "\n\nAVISO:" + colorama.Fore.RESET + \
-      " Segure a tecla ESC para fechar! \n\nIniciando em 5 SEG!")
-
-sleep(5)
-print(colorama.Fore.GREEN + "\n\nIniciado!\n" + colorama.Fore.RESET)
-mainloop(currentButton)
-quit()
+    sleep(5)
+    print(colorama.Fore.GREEN + "\n\nIniciado!\n" + colorama.Fore.RESET)
+    mainloop(currentButton)
+    quit()
+except KeyboardInterrupt:
+    quit()
+except Exception as e:
+    print(colorama.Back.RED + "ERRO:\n" + e + colorama.Back.RESET)
