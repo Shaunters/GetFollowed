@@ -4,7 +4,7 @@
 Script made to gain followers by having mutual follows.
 
 ## Social medias supported (until now):
-- 🐦 Twitter (only default theme);
+- 🐦 Twitter;
 - 📷 Instagram
 
 ## How to use?
@@ -29,7 +29,7 @@ When the script is started, it will ask you what social media you're going to us
 Script feito com o intuito de ganhar seguidores por meio de receber follows mútuos.
 
 ## Redes Sociais suportadas (até então):
-- 🐦 Twitter (somente tema padrão);
+- 🐦 Twitter;
 - 📷 Instagram
 
 ## Como usar?
