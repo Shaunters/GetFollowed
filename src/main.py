@@ -1,9 +1,20 @@
-import pyautogui
-import colorama
+import pyautogui, colorama
 import os, sys, keyboard
 from time import sleep
 
-ARTE = colorama.Fore.BLUE + \
+# Define se deve logar prints de DEBUGGING;
+DEBUG = False
+
+# Definindo "shortcuts" para o colorama;
+RED = colorama.Fore.RED
+BLUE = colorama.Fore.BLUE
+LBLUE = colorama.Fore.LIGHTBLUE_EX
+YELLOW = colorama.Fore.YELLOW
+GREEN = colorama.Fore.GREEN
+RESET = colorama.Fore.RESET
+
+# Arte ASCII;
+ARTE = BLUE + \
 """
 \n\n
    _____      _   ______    _ _                       _ 
@@ -12,70 +23,102 @@ ARTE = colorama.Fore.BLUE + \
  | | |_ |/ _ \ __|  __/ _ \| | |/ _ \ \ /\ / / _ \/ _` |
  | |__| |  __/ |_| | | (_) | | | (_) \ V  V /  __/ (_| |
   \_____|\___|\__|_|  \___/|_|_|\___/ \_/\_/ \___|\__,_|
-\n\n
+\n
 """
 
-"""Função inicial, que retorna qual botão deverá ser usado"""
-def chooseButton():
-    print(colorama.Fore.LIGHTBLUE_EX + "Escolha qual rede social usando os números abaixo:")
-    print("1. Twitter;\n2. Instagram;\n")
-    
-    option = str(input(">> "))
-    
-    if option == "1":
-        path = "{}/imgs/twitter.png".format(sys.argv[0].split("main.py")[0])
-    elif option == "2":
-        path = "{}/imgs/instagram.png".format(sys.argv[0].split("main.py")[0])
-    elif option not in ("1", "2"):
-        print(colorama.Fore.RED + "\nEscolha inválida;" + colorama.Fore.RESET + "\n")
-        return chooseButton()
+"""Classe principal, contém todos os métodos do script"""
+class Main():
+    """Iniciando a classe, define algumas variáveis."""
+    def __init__(self, debug=False) -> None:
+        self.DEBUG = debug
+        # Caminho para o .png a ser usado;
+        self.caminhoBotao = ""
+        # Float de confiança, usado pelo locateOnScreen();
+        self.confianca = 0.8
+        # Tempo de esperar à cada iteração do mainLoop();
+        self.waitTime = 0.5
+        # Tamanho do scroll quando o botão não for localizado;
+        self.scrollAmount = -150
 
-    return path
+    """Função print própria da classe, usada para DEBUGGING"""
+    def __print(self, texto) -> None:
+        if self.DEBUG:
+            print(YELLOW + texto)
 
-"""Função que tenta encontrar e retornar o botão"""
-def findButton(currentButton, trust=0.8):
-    try:
-        return pyautogui.locateOnScreen(currentButton, confidence=trust)
-    except pyautogui.ImageNotFoundException:
-        return None
-
-"""Loop principal que roda até ser parado usando a tecla ESC"""
-def mainloop(currentButton):
-    while True:
-
-        # Sair se ESC estiver pressionado;
-        if keyboard.is_pressed("esc"):
-            break
-
-        sleep(1.5)
-        # Localizar o botão;
-        location = findButton(currentButton)
-
-        # Se não for encontrado, scrollar pra baixo;
-        if location == None:
-            pyautogui.scroll(-125)
-            pass
+    """Retorna o input do usuário com a rede social escolhida."""
+    def __pegarEscolha(self) -> str:
+        print(LBLUE + "Escolha a rede social para ser usada: (USE OS NÚMEROS)")
+        print("1 - Twitter;\n2 - Instagram;\n")
+        
+        inp = str(input(">> "))
+        
+        if inp == "1":
+            return "{}/imgs/twitter.png".format(sys.argv[0].split("main.py")[0])
+        elif inp == "2":
+            return "{}/imgs/instagram.png".format(sys.argv[0].split("main.py")[0])
         else:
-            pyautogui.moveTo(location)
-            pyautogui.click()
-            pass
+            print(RESET + RED + "\nEscolha Inválida!\n" + RESET)
+            return self.__pegarEscolha()
 
-try:
-    # Limpando o console (ele também verifica se o SO é Windows ou Linux)
-    # E printando a arte ASCII;
-    os.system("cls" if os.name == "nt" else "clear")
-    print(ARTE)
+    """Retorna as coordenadas do botão ou None se não for achado."""
+    def __localizarBotao(self) -> str or None:
+        try:
+            temp = pyautogui.locateOnScreen(self.caminhoBotao, confidence=self.confianca)
+            return temp
+        except pyautogui.ImageNotFoundException:
+            return None
+    
+    """Método principal, chamado de fora para iniciar a execução."""
+    def run(self) -> None:
+        try:
+            os.system("cls" if os.name == "nt" else "clear")
+            print(ARTE)
+            self.caminhoBotao = self.__pegarEscolha()
 
-    # Chamando a função de escolher o botão;
-    currentButton = chooseButton()
-    print(colorama.Fore.YELLOW + "\n\nAVISO:" + colorama.Fore.RESET + \
-        " Segure a tecla ESC ou aperte CTRL + C para fechar! \n\nIniciando em 5 SEG!")
+            print("\n\n" + YELLOW + "AVISO -> " + RESET + \
+                  "O script será iniciado em 5 segundos, abra a página da rede social!\n(Segure ESC para fechar!)\n")
+            sleep(5)
+            print("\n" + GREEN + "Iniciado com sucesso!" + RESET)
+            if self.DEBUG: print(YELLOW + "(DEBUG MODE)" + RESET)
 
-    sleep(5)
-    print(colorama.Fore.GREEN + "\n\nIniciado!\n" + colorama.Fore.RESET)
-    mainloop(currentButton)
-    quit()
-except KeyboardInterrupt:
-    quit()
-except Exception as e:
-    print(colorama.Back.RED + "ERRO:\n" + e + colorama.Back.RESET)
+            self.__mainLoop()
+            print(RESET)
+            quit()
+
+        except Exception as e:
+            print(RED + f"ERRO: \n{e}\n\n" + RESET)
+            quit()
+
+    """Loop principal, pega a localização e clica."""
+    def __mainLoop(self) -> None:
+        while True:
+            self.__print("Rodando o loop;\n")
+            self.__print("Esperando 0.2segs;\n")
+            sleep(self.waitTime)
+
+            self.__print("Verificando se ESC está pressionado;\n")
+            if keyboard.is_pressed("ESC"):
+                self.__print("ESC está pressionado, fechando;\n")
+                break
+
+            self.__print("Tentando localizar o botão;\n")
+            coords = self.__localizarBotao()
+            if coords is None:
+                self.__print("O botão não localizado, scrollando;\n")
+                pyautogui.scroll(self.scrollAmount)
+                pass
+            else:
+                self.__print("O botão foi localizado, movendo o mouse;\n")
+                pyautogui.moveTo(coords)
+                self.__print("O mouse foi movido, clickando;\n")
+                pyautogui.click()
+                self.__print("Click!\n")
+                pass
+
+if __name__ == "__main__":
+    try:
+        Main(debug=DEBUG).run()
+    except KeyboardInterrupt:
+        print(RED + "Fechando...")
+        print(RESET)
+        quit()
