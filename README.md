@@ -28,6 +28,6 @@ e se ele não achar, ele irá scrollar para baixo automaticamente. (Muito fácil
 - [ ] Adicionar suporte à inglês;
 
 #### Footnotes
-<b id="f1">1.</b> Outros temas geram incompatibilidade no script, solução em andamento;[↩](#a1)
+<b id="f1">1.</b> [Outros temas geram incompatibilidade no script, solução em andamento;](#a1)
 
-<b id="f2">2.</b> Python3 recomendado;[↩](#a2)
+<b id="f2">2.</b> [Python3 recomendado;](#a2)
