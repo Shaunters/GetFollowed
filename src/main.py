@@ -47,6 +47,7 @@ class Main():
 
         # Language Sheets containing the languages texts;
         self.englishLS = {
+                              "ID": "EN",
                               "choiceSocial": "Choose the social media to be used: (USE THE NUMBERS)",
                               "choiceError": "\nInvalid choice!\n",
                               "startingWarning": "WARNING -> ",
@@ -55,6 +56,7 @@ class Main():
                               "closing": "\nClosing..."
                               }
         self.portuguesLS = {
+                              "ID": "BR",
                               "choiceSocial": "Escolha a rede social à ser usada: (USE OS NÚMEROS)",
                               "choiceError": "\nEscolha inválida!\n",
                               "startingWarning": "AVISO -> ",
@@ -93,10 +95,13 @@ class Main():
         
         inp = str(input(">> "))
         
+        # Twitter (Default Theme);
         if inp == "1":
-            return "{}/imgs/twitter.png".format(sys.argv[0].split("main.py")[0])
+            return "{}/imgs/{}_twitter.png".format(sys.argv[0].split("main.py")[0], self.actualLS["ID"])
+        # Instagram;
         elif inp == "2":
-            return "{}/imgs/instagram.png".format(sys.argv[0].split("main.py")[0])
+            return "{}/imgs/{}_instagram.png".format(sys.argv[0].split("main.py")[0], self.actualLS["ID"])
+        # Invalid choice;
         else:
             print(RESET + RED + self.actualLS["choiceError"] + RESET)
             return self.__getPathInput()
