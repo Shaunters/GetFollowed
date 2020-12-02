@@ -1,7 +1,9 @@
 # 💻 GetFollowed 💻
 
-# English | :us:
 Script made to gain followers by having mutual follows.
+
+This is the English version, see below for other languages:
+[:br: - Versão BR](./translations/br.md)
 
 ## Social medias supported (until now):
 - 🐦 Twitter;
@@ -24,34 +26,3 @@ When the script is started, it will ask you what social media you're going to us
 - [X] Comment the code better;
 - [X] Add english language support on the script;
 - [X] Add english section in README.md;
-
-# Português Brasileiro | :brazil:
-Script feito com o intuito de ganhar seguidores por meio de receber follows mútuos.
-
-## Redes Sociais suportadas (até então):
-- 🐦 Twitter;
-- 📷 Instagram
-
-## Como usar?
-Antes de começar, você deve ter o [Python3](https://www.python.org/downloads/) instalado.
-Após a instalação, clone ou baixe esse repositório, e na pasta principal, use `cd src`
-e depois `pip install -r requirements.txt`, e você está pronto para continuar.
-
-Antes de iniciar o script, veja se a rede social que você deseja usar está na lista acima, 
-se estiver, abra a rede social que gostaria de usar, e procure uma aba de
-"pessoas recomendadas para você seguir" ou algo relacionado/parecido à isso.
-
-Após isso, inicie o script, ou clicando diretamente nele, ou usando `python main.py` estando na pasta `src`. 
-Quando o script for iniciado, ele perguntará qual rede social você irá usar,
-você deve escolher uma das opções disponíveis usando o número correto para a opção desejada, 
-e em seguida, um timer de 5 segundos irá começar, nesse tempo, você deve voltar para a página
-da rede social, e esperar. O script deve começar automaticamente à clicar no botão de seguir,
-e se ele não achar, ele irá scrollar para baixo automaticamente. (Muito fácil, não?)
-
-### To-Do:
-- [ ] Adicionar suporte à mais redes sociais;
-- [X] Adicionar suporte à outros temas do Twitter;
-- [ ] Adicionar suporte à mais linguagens;
-- [X] Documentar melhor o código;
-- [X] Adicionar suporte à inglês no script;
-- [X] Adicionar uma seção de inglês no README.md;
