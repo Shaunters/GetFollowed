@@ -3,7 +3,8 @@
 Script made to gain followers by having mutual follows.
 
 This is the English version, see below for other languages:
-[:br: - Versão BR](./translations/br.md)
+
+- [:brazil: - Versão BR](./translations/br.md)
 
 ## Social medias supported (until now):
 - 🐦 Twitter;
